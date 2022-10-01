@@ -1,6 +1,7 @@
 #include <QmlNet/qml/QCoreApplication.h>
 #include <QmlNet/qml/NetVariantList.h>
 #include <QmlNet/qml/NetQObject.h>
+#include <QFont>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QmlNetUtilities.h>
@@ -179,6 +180,15 @@ Q_DECL_EXPORT void qapp_setWindowIcon(QGuiApplicationContainer* container, QChar
         qobject_cast<QGuiApplication*>(container->app)->setWindowIcon(QIcon(QString(pngPath)));
     } else {
         qCritical("Setting the window icon is only possible by using a QGuiApplication instance!");
+    }
+}
+
+Q_DECL_EXPORT void qapp_setFontByName(QGuiApplicationContainer *container, QChar *fontName)
+{
+    if (qobject_cast<QGuiApplication *>(container->app) != nullptr) {
+        qobject_cast<QGuiApplication *>(container->app)->setFont(QFont(QString(fontName)));
+    } else {
+        qCritical("Setting font is only possible by using a QGuiApplication instance!");
     }
 }
 
